@@ -1,16 +1,31 @@
 <?php
 session_start();
+$email = $_SESSION['email'];
 include '../sqlCommands/connectDb.php';
-include 'main.php';
-?>
+$sql2 = "SELECT * FROM {$_SESSION['type']} WHERE email = '$email';";
+$result1 = mysqli_query($sql, $sql2);
+$num1 = mysqli_num_rows($result1);
 
+
+
+while ($row = $result1->fetch_assoc()) {
+  $first_name = $row["first_name"];
+  $last_name = $row["last_name"];
+  $email1 = $row["email"];
+  $phone = $row["phone_number"];
+  $gender = $row["gender"];
+  $pass = $row["passwords"];
+}
+?> 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>UserHome</title>
+    <title>profile</title>
+    <link rel="stylesheet" href="css/edit_profile.css">
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="icon" href="assets/img/Logo.png">
@@ -19,10 +34,14 @@ include 'main.php';
             font-family: "Dosis";
         }
     </style>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" charset="utf-8"></script>
+</head>
+
+
 </head>
 
 <body>
-
 <div>
     <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-sm p-3 bg-white">
             <div class="container-fluid">
@@ -69,8 +88,8 @@ include 'main.php';
                                 <?php } ?>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                                     <li><a class="dropdown-item" href="profile.php"><i class="fa-solid fa-user"></i> My Profile</a></li>
-                                    <li><a class="dropdown-item" onclick="cpass('<?php echo $email; ?>', '<?php echo $pass; ?>')"><i class="fa-solid fa-key"></i> Change Password</a></li>
-                                    <li><a class="dropdown-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                                    <li><a class="dropdown-item" onclick="cpass('<?php echo $_SESSION['email']?>', '<?php echo $pass; ?>')"><i class="fa-solid fa-key"></i> Change Password</a></li>
+                                    <li><a class="dropdown-item" href="../login/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -80,29 +99,68 @@ include 'main.php';
             </div>
     </nav>
 </div>
-    
+
 <div class="container-fluid main-body">
+    <div class="row">
 
-    <div class="container-fluid main-body">
 
-        <div class="row mbody">
-            <div class="col-lg-6 col-md-12 col-sm-12 col-one">
-                <h2 class="t1">UIU  Service Hub</h2>
-                <h5 class="t2">Some Important Service Provide By a Single Platform </h5>
-                <p class="onep">In this project, we are developing a System based on the services that UIU provides for the students. It will reduce the problem to get these services that our university provides by combining them in a single platform. The services include Hostel Service, Suttle Service Registration, Student Loans, Club Forum Discussion, and Posts.</p>
-                <button onclick="location.href='#next';" class="btn btn-warning cus-b3">Get Started</button>
-            </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 col-two">
-                <img class="img-3 d-none d-lg-block " src="../../img/3.png" alt="img">
-            </div>
- 
+      <div class="card col-lg-12 col-one">
+
+
+        <h3 class="login"><i class="fa-solid fa-pen-to-square"></i> Edit Profile</h3>
+
+        <form action="update_profile.php" method="POST" enctype="multipart/form-data">
+          <div class="form-group w-100">
+            <label class="mb-2 mt-2">First Name</label>
+            <input type="text" class="form-control form-control email fn" name="first_name" value="<?php echo "$first_name" ?>" aria-describedby="emailHelp" placeholder="" required>
+          </div>
+
+          <div class="form-group w-100">
+            <label class="mb-2 mt-2">Last Name</label>
+            <input type="text" class="form-control form-control" name="last_name" value="<?php echo "$last_name" ?>" placeholder="" required>
+          </div>
+          <div class="form-group w-100">
+            <label class="mb-2 mt-2">Gender</label>
+            <select class="form-control form-control" id="exampleFormControlSelect1" name="gender" required>
+
+              <?php if ($gender == "Male") { ?>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              <?php } ?>
+
+              <?php if ($gender == "Female") { ?>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Other">Other</option>
+              <?php } ?>
+
+              <?php if ($gender == "Other") { ?>
+                <option value="Other">Other</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              <?php } ?>
+
+            </select>
+          </div>
+
+          <div class="form-group w-100">
+            <label class="mb-2 mt-2">Phone Number</label>
+            <input type="text" class="form-control form-control" name="phone" placeholder="Phone Number" value="<?php echo "$phone" ?>" required>
+          </div>
+
+          <div class="btn1 w-100">
+            <button type="submit" class="btn custom-btn">Save</button>
+          </div>
+
+
+        </form>
+
+      </div>
     </div>
-
-
-
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script> 
     <script src="assets/js/all.min.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="assets/js/custom.js"></script>
 </body>
 
 </html>
