@@ -74,6 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             font-family: "Dosis";
         }
     </style>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -117,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <?php } ?>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="profile.php"><i class="fa-solid fa-user"></i> My Profile</a></li>
-                            <li><a class="dropdown-item" onclick="cpass('<?php echo $email; ?>', '<?php echo $pass; ?>')"><i class="fa-solid fa-key"></i> Change Password</a></li>
+                            <li><a class="dropdown-item" onclick="cpass('<?php echo $_SESSION['email']?>', '<?php echo $pass; ?>')"><i class="fa-solid fa-key"></i> Change Password</a></li>
                             <li><a class="dropdown-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
                         </ul>
                     </div>
@@ -178,7 +181,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/all.min.js"></script>
-<script src="assets/js/app.js"></script>
+ <script src="assets/js/custom.js"></script>
 </body>
 
 </html>
