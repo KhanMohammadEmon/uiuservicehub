@@ -3,18 +3,18 @@
 
     session_start();
     //checking if already logged in
-    // if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    //     if($_SESSION['type'] == "admin")
-    //         header("location: pages/admin/mainPage.php");
-    //     else if($_SESSION['type'] == "forumRep")
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+        if($_SESSION['type'] == "admin")
+            header("location: pages/admin/mainPage.php");
+        else if($_SESSION['type'] == "forumRep")
                
-    //         header("location: pages/forumRep/mainPage.php");
-    //     else if($_SESSION['type'] == "general_user")
-    //         header("location: pages/general_user/mainPage.php");
-    // }
-    // else{
-    //     session_destroy();
-    // }
+            header("location: pages/forumRep/mainPage.php");
+        else if($_SESSION['type'] == "general_user")
+            header("location: pages/general_user/mainPage.php");
+    }
+    else{
+        session_destroy();
+    }
 
 
 
