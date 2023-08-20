@@ -252,23 +252,63 @@ if (isset($_GET["id"])) {
                                 </div><!-- end pp -->
                             </div><!-- end content -->
 
+
+                            <!-- comments show  -->
+
+                            <div>
+                                <h2>
+                                    Show Comments:
+                                </h2>
+                            </div>
+                            <div>
+
+                                <?php
+                              //$count = 1;
+                              $q13=  "SELECT * FROM `post_comment` where post_id = '{$row["id"]}';";
+                              $run13 = mysqli_query($sql, $q13); 
+
+                               while($row13 = mysqli_fetch_array($run13)) {
+                               
+                                 echo $row13['name']." : ".$row13['content'] . "<br />";
+                                 //$count++;
+                                
+                               
+                               }
+                               
+                        ?>
+                            </div>
+
+
+                            <!-- comment part Start -->
+
+
+                            <form action="" method="POST">
+                                <input type="hidden" name="post_id" <?php echo "value='{$row["id"]}'"; ?>>
+                                <textarea name="comments" id="comments"
+                                    style="width:96%;height:90px;padding:2%;font:1.4em/1.6em cursive;background-color:white;color:black;">
+
+                                </textarea>
+                                <button type="submit" name="submit1">Submit</button>
+                            </form>
+
+
                             <hr class="invis1">
 
                             <?php
 
-    $sql1 = "SELECT * FROM posts WHERE cat_id='{$row["cat_id"]}'";
-    $result1 = mysqli_query($sql, $sql1);
-    if (mysqli_num_rows($result1) > 0) {
+                            $sql1 = "SELECT * FROM posts WHERE cat_id='{$row["cat_id"]}'";
+                            $result1 = mysqli_query($sql, $sql1);
+                            if (mysqli_num_rows($result1) > 0) {
 
-    ?>
+                            ?>
                             <div class="custombox clearfix">
                                 <h4 class="small-title">You may also like</h4>
                                 <div class="row">
                                     <?php
 
-            while ($row1 = mysqli_fetch_assoc($result1)) {
+                                    while ($row1 = mysqli_fetch_assoc($result1)) {
 
-            ?>
+                                        ?>
                                     <div class="col-lg-6">
                                         <div class="blog-box">
                                             <div class="post-media">

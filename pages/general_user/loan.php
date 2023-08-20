@@ -52,7 +52,7 @@ include 'main.php';
                         <a class="nav-link active" aria-current="page" href="apply_loan.php"><i class="fa-solid fa-file"></i> Apply for Loan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="payment.php"><i class="fa-solid fa-money-bill"></i> Payment</a>
+                        <a class="nav-link active" aria-current="page" href="payment2.php"><i class="fa-solid fa-money-bill"></i> Payment</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="payment_history.php"><i class="fa-solid fa-history"></i> Payment History</a>
@@ -74,7 +74,7 @@ include 'main.php';
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="profile.php"><i class="fa-solid fa-user"></i> My Profile</a></li>
                             <li><a class="dropdown-item" onclick="cpass('<?php echo $_SESSION['email']; ?>', '<?php echo $pass; ?>')"><i class="fa-solid fa-key"></i> Change Password</a></li>
-                            <li><a class="dropdown-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                            <li><a class="dropdown-item" href="../login/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -86,17 +86,46 @@ include 'main.php';
 
 
 
-</body>
 
-<div class="container-fluid main-body">
-    <div class="row mbody">
-        <div class="col-lg-12">
-            <div class="tab-content" id="v-pills-tabContent">
-                
-            </div>
-        </div>         
+
+<div class="container py-5 shuttle-container" style = "margin : 100px">
+    <!-- <h2 class="mb-4">Your Loan Request Status:</h2> -->
+        
+        <?php
+// Include database connection or any other necessary code
+
+// Assuming you have a session variable for student ID
+$email1 = $_SESSION['email'];
+
+// Retrieve the loan application status and amount based on student ID
+$r = "SELECT * FROM loan_application WHERE email = '$email1'";
+$result = mysqli_query($sql, $r);
+
+if (mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $status = $row['status'];
+    $amount = $row['amount'];
+    
+
+    echo '<div class="container py-5 shuttle-container" style="margin: 100px;">';
+    echo '<h2 class="mb-4" style="color: orange; font-weight: bold;">your loan request status:</h2>';
+
+
+    if ($status == 'approved') {
+        echo '<p>Your loan application has been approved. Amount: ' . $amount . '</p>';
+    } elseif ($status == 'pending') {
+        echo '<p>Your loan application is pending review by the admin. Please wait for approval.</p>';
+    } elseif ($status == 'rejected') {
+        echo '<p>Your loan application has been rejected. Please resubmit your application or contact the admin office.</p>';
+    }
+
+    echo '</div>';
+} else {
+    echo '<p>No loan application found for your student ID.</p>';
+}
+?>
+
     </div>
-</div>
 
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/all.min.js"></script>
