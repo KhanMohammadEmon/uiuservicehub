@@ -2,7 +2,7 @@
 //session_start();
 $email1 = $_SESSION['email'];
 include '../sqlCommands/connectDb.php';
-$sql2 = "SELECT * FROM `general_user` WHERE `email` = '$email1';";
+$sql2 = "SELECT * FROM {$_SESSION['type']} WHERE `email` = '$email1';";
 $result1 = mysqli_query($sql, $sql2);
 $num1 = mysqli_num_rows($result1);
 

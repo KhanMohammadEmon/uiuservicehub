@@ -2,6 +2,7 @@
 session_start();
 include '../sqlCommands/connectDb.php';
 include 'main.php';
+include "showUser.php";
 ?>
 
 <!DOCTYPE html>
@@ -10,8 +11,7 @@ include 'main.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Post</title>
-    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <title>UserHome</title>
     <link rel="stylesheet" href="css/styles.css">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -82,70 +82,86 @@ include 'main.php';
             </div>
     </nav>
 </div>
-    
-<div class="container-fluid main-body">
 
-    <div class="container-fluid main-body">
-
+<div class=" container-fluid main-body">
         <div class="row mbody">
-            <div class="col-lg-12">
-                <!-- <button onclick="location.href='#next';" class="btn btn-warning cus-b3">Get Started</button> -->
+            <div class="col-lg-12 col-one">
+                <div class="shadow-sm p-3 mb-5 bg-white rounded">
+                        <div class="card-header py-3">
+                            <h4 class="m-0 font-weight-bold fw-bold text-dark">Posts</h4>
+                        </div>
 
-            <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="v-pills-home" tabindex="0">
-                    <!-- HOME -->
-                    <?php
-                    $r = "SELECT * FROM posts ORDER BY id DESC";
-                    $result = mysqli_query($sql, $r);
-                    ?>
 
-                    <section class="mt-2" id="jform">
-                        <div class="masonry-blog p-2">
-                            <?php
-                            while ($post_row = mysqli_fetch_assoc($result)) {
+                        <div class="card-body">
+
+                            <?php if (isset($_REQUEST['remove_success'])) {
+                                if ($_REQUEST['remove_success'] == "true") {
+                                    echo "<div class='alert alert-success'>Record deleted successful.</div>";
+                                } else {
+                                    echo "<div class='alert alert-danger'>Record can't deleted.</div>";
+                                }
+                            }
                             ?>
-                                <div class="left-side col-md-2">
-                                    <div class="card p-1" style="min-width: 400px !important; <?php if (file_exists("../uploads/" . $post_row['img'])) {
-                                                                                echo "background-image: url('../uploads/{$post_row['img']}'); background-size: cover; opacity: 0.7;";
-                                                                                } else {
-                                                                                    echo "background-image: url('../uploads/{$post_row['old_img']}'); background-size: cover; opacity: 0.7;";
-                                                                                } ?>">
-                                        
-                                        <div class="shadow-desc">
-                                            <div class="blog-meta">
 
-                                                <h4><a id="view" class="text-uppercase fw-bold" href="view.php?id=<?php echo $post_row["id"]; ?>" title="<?php echo $post_row["title"]; ?>" target="_blank"><?php echo $post_row["title"]; ?></a></h4>
-                                                <small><a class="fw-bold" href="#" title="<?php echo $post_row["date"]; ?>"><?php echo $post_row["date"]; ?></a></small>
-                                                <h4><a class="fw-bold" href="#" title="<?php echo $post_row["view"]; ?>"><?php echo "Viewed: {$post_row["view"]}"; ?></a></h4>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Title</th>
+                                            <th>Category</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
 
-                                                <span class="bg-aqua"><a class="fw-bold" href="">
-                                                        <?php
-                                                        $sql1 = "SELECT cat_name FROM categories WHERE id='{$post_row["cat_id"]}'";
-                                                        $result1 = mysqli_query($sql, $sql1);
-                                                        if (mysqli_num_rows($result1) > 0) {
-                                                            $cat_data = mysqli_fetch_assoc($result1);
-                                                            echo "Type: {$cat_data['cat_name']}";
+                                        $email = $_SESSION['email'];
+
+                                        $r = "SELECT * FROM posts where f_email = '$email' ";
+                                        $result = mysqli_query($sql, $r);
+                                        if (mysqli_num_rows($result) > 0) {
+                                            $id = 1;
+                                            while ($post_row = mysqli_fetch_assoc($result)) {
+
+                                        ?>
+                                                <tr>
+                                                    <td><?php echo $id; ?></td>
+                                                    <td><?php echo $post_row['title']; ?></td>
+                                                    <td><?php
+
+                                                        $show_category = mysqli_query($sql, "SELECT * FROM categories WHERE id='{$post_row["cat_id"]}'");
+                                                        if (mysqli_num_rows($show_category) > 0) {
+                                                            $category_data = mysqli_fetch_assoc($show_category);
+                                                            echo $category_data['cat_name'];
                                                         }
-                                                        ?>
-                                                    </a></span>
-                                            </div><!-- end meta -->
-                                        </div><!-- end shadow-desc -->
-                                    </div><!-- end post-media -->
-                                </div><!-- end left-side -->
-                            <?php } ?>
-                        </div><!-- end masonry -->
-                    </section>
-                </div>
+
+                                                        ?></td>
+                                                    <td>
+                                                        <a href="edit_post.php?id=<?php echo $post_row['id']; ?>" class="btn btn-primary" title="Edit"><i class="fas fa-edit"></i></a>
+                                                        <a href="delete_post.php?id=<?php echo $post_row['id']; ?>" class="btn btn-danger" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                        <?php
+
+                                                $id++;
+                                            }
+                                        }
+
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                 
             </div>
         </div>         
-    </div>
+    
 </div>
-
-
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/all.min.js"></script>
     <script src="assets/js/custom.js"></script>
 </body>
-
-</html>

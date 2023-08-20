@@ -2,6 +2,8 @@
 session_start();
 include '../sqlCommands/connectDb.php';
 include 'main.php';
+include "showUser.php";
+include "C_post.php";
 ?>
 
 <!DOCTYPE html>
@@ -10,8 +12,7 @@ include 'main.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Post</title>
-    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <title>UserHome</title>
     <link rel="stylesheet" href="css/styles.css">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -85,60 +86,78 @@ include 'main.php';
     
 <div class="container-fluid main-body">
 
-    <div class="container-fluid main-body">
 
         <div class="row mbody">
-            <div class="col-lg-12">
+            <div class="col-lg-12 col-one">
                 <!-- <button onclick="location.href='#next';" class="btn btn-warning cus-b3">Get Started</button> -->
-
-            <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="v-pills-home" tabindex="0">
-                    <!-- HOME -->
-                    <?php
-                    $r = "SELECT * FROM posts ORDER BY id DESC";
-                    $result = mysqli_query($sql, $r);
-                    ?>
-
-                    <section class="mt-2" id="jform">
-                        <div class="masonry-blog p-2">
-                            <?php
-                            while ($post_row = mysqli_fetch_assoc($result)) {
-                            ?>
-                                <div class="left-side col-md-2">
-                                    <div class="card p-1" style="min-width: 400px !important; <?php if (file_exists("../uploads/" . $post_row['img'])) {
-                                                                                echo "background-image: url('../uploads/{$post_row['img']}'); background-size: cover; opacity: 0.7;";
-                                                                                } else {
-                                                                                    echo "background-image: url('../uploads/{$post_row['old_img']}'); background-size: cover; opacity: 0.7;";
-                                                                                } ?>">
-                                        
-                                        <div class="shadow-desc">
-                                            <div class="blog-meta">
-
-                                                <h4><a id="view" class="text-uppercase fw-bold" href="view.php?id=<?php echo $post_row["id"]; ?>" title="<?php echo $post_row["title"]; ?>" target="_blank"><?php echo $post_row["title"]; ?></a></h4>
-                                                <small><a class="fw-bold" href="#" title="<?php echo $post_row["date"]; ?>"><?php echo $post_row["date"]; ?></a></small>
-                                                <h4><a class="fw-bold" href="#" title="<?php echo $post_row["view"]; ?>"><?php echo "Viewed: {$post_row["view"]}"; ?></a></h4>
-
-                                                <span class="bg-aqua"><a class="fw-bold" href="">
-                                                        <?php
-                                                        $sql1 = "SELECT cat_name FROM categories WHERE id='{$post_row["cat_id"]}'";
-                                                        $result1 = mysqli_query($sql, $sql1);
-                                                        if (mysqli_num_rows($result1) > 0) {
-                                                            $cat_data = mysqli_fetch_assoc($result1);
-                                                            echo "Type: {$cat_data['cat_name']}";
-                                                        }
-                                                        ?>
-                                                    </a></span>
-                                            </div><!-- end meta -->
-                                        </div><!-- end shadow-desc -->
-                                    </div><!-- end post-media -->
-                                </div><!-- end left-side -->
-                            <?php } ?>
-                        </div><!-- end masonry -->
-                    </section>
+            
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <h2 class="w-100 text-center"> Create Post</h2>
                 </div>
+                <section class="row mt-3">
+                    <div class="col-lg-8 col-12 mx-auto bg-white p-4 shadow">
+
+                        <form action="../general_user/C_post.php" method="post" enctype="multipart/form-data">
+                            <?php echo $msg; ?>
+                            <div class="form-group mb-1">
+                                <label for="title">Title</label>
+                                <input type="text" class="form-control" value="<?php echo $_POST['title']; ?>" name="title" id="title" required>
+                            </div>
+                            <div class="form-group mb-1">
+                                <label for="description">Description</label>
+                                <textarea class="form-control" name="description" rows="5" id="description" required><?php echo $_POST['description']; ?></textarea>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="img">Image</label>
+                                <input type="file" accept="image/*" class="form-control" name="img" id="img" required>
+                            </div>
+
+                            <div class="form-group mb-2">
+                                <select class="form-control" name="category" required>
+                                    <option value="" selected hidden disabled>Select Category</option>
+                                    <?php
+                                    if ($_SESSION['type'] == "forumRep" || $_SESSION['type'] == "admin") {
+                                        $r = "SELECT * FROM categories";
+                                        $result = mysqli_query($sql, $r);
+                                        if (mysqli_num_rows($result) > 0) {
+                                            while ($row = mysqli_fetch_assoc($result)) {
+
+                                    ?>
+                                                <option <?php if ($_POST['category'] == $row['id']) {
+                                                            echo "selected";
+                                                        } ?> value="<?php echo $row['id']; ?>"><?php echo $row['cat_name']; ?></option>
+                                            <?php }
+                                        }
+                                    } else {
+                                        $r = "SELECT * FROM categories where id = 2 ";
+                                        $result = mysqli_query($sql, $r);
+                                        if (mysqli_num_rows($result) > 0) {
+                                            while ($row = mysqli_fetch_assoc($result)) {
+
+                                            ?>
+                                                <option <?php if ($_POST['category'] == $row['id']) {
+                                                            echo "selected";
+                                                        } ?> value="<?php echo $row['id']; ?>"><?php echo $row['cat_name']; ?></option>
+                                    <?php }
+                                        }
+                                    } ?>
+                                </select>
+                            </div>
+
+                            <button type="submit" name="submit" class="btn btn-success">Add Post</button>
+                        </form>
+                    </div>
+                </section>
             </div>
+
+
+
+
+
+               <!-- newline end -->
+            </div>  
         </div>         
-    </div>
+    
 </div>
 
 
