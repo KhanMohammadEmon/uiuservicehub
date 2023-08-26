@@ -22,8 +22,17 @@
         if($row == null){
             if($password == $con_pass){
                 $insert_query = "insert into {$type}(first_name, last_name, email, phone_number, passwords,gender) values ('{$first_name}',  '{$last_name}', '{$email}', '{$phone}', '{$password}','{$gender}');";
+                 $r= mysqli_query($sql, $insert_query);
+                if($type =='forumRep')
+                {  
+                    
+                    $active = 0;
+                    
 
-                mysqli_query($sql, $insert_query);
+                     $name = $first_name." ".$last_name;
+                     $r1 = "INSERT INTO `room1`( `forum_name`, `active`) VALUES ('{$name}','$active') ";
+                     $resultY= mysqli_query($sql, $r1);
+                }
                 $success = 1;
             }
             else{
