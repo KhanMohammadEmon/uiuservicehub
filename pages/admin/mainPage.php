@@ -15,10 +15,12 @@ include '../general_user/main.php';
     <title>Responsive Admin Dashboard </title>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+
 </head>
 
 <body>
-    
+
     <div class="container">
         <!-- ========================= Main ==================== -->
         <div class="main">
@@ -31,7 +33,7 @@ include '../general_user/main.php';
                 </div>
 
                 <div class="user">
-                    <img src="assets/imgs/customer01.jpg" alt="">
+                  <img src="assets/imgs/customer01.jpg" alt="">
                 </div>
             </div>
 
@@ -58,7 +60,7 @@ include '../general_user/main.php';
                     </div>
 
                     <div class="iconBx">
-                        <ion-icon name="eye-outline"></ion-icon>
+                      <ion-icon name="albums-outline"></ion-icon>
                     </div>
                 </div>
 
@@ -84,7 +86,7 @@ include '../general_user/main.php';
                     </div>
 
                     <div class="iconBx">
-                    <iconify-icon icon="game-icons:cash"></iconify-icon>
+                        <iconify-icon icon="game-icons:cash"></iconify-icon>
                     </div>
                 </div>
 
@@ -133,7 +135,7 @@ include '../general_user/main.php';
                         <!-- <a href="#" class="btn">View All</a> -->
                     </div>
 
-                   <?php 
+                    <?php 
                       include 'request_loan.php';
                      ?>
 
@@ -141,7 +143,7 @@ include '../general_user/main.php';
             </div>
 
 
-                <!-- ================ Shuttle Request Details List ================= -->
+            <!-- ================ Shuttle Request Details List ================= -->
             <div class="details">
                 <div class="recentOrders">
                     <div class="cardHeader">
@@ -149,100 +151,19 @@ include '../general_user/main.php';
                         <!-- <a href="#" class="btn">View All</a> -->
                     </div>
 
-                     <?php 
+                    <?php 
                       include 'request_shuttle.php';
                      ?>
                 </div>
             </div>
-
-                <!-- ================= New Customers ================ -->
-               <!--  <div class="recentCustomers">
-                    <div class="cardHeader">
-                        <h2>Recent Customers</h2>
-                    </div>
-
-                    <table>
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-                    </table>
-                </div> -->
-            </div>
         </div>
+    </div>
     </div>
 
     <!-- =========== Scripts =========  -->.
-
-    
     <script src="assets/js/main.js"></script>
+
+   
 
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
