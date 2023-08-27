@@ -54,6 +54,7 @@ include 'main.php';
                     <li class="nav-item">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <a class="nav-link active" aria-current="page" href="payment.php"><i class="fa-solid fa-money-bill"></i> Payment</a>
 =======
                         <a class="nav-link active" aria-current="page" href="payment_loan.php"><i class="fa-solid fa-money-bill"></i> Payment</a>
@@ -61,6 +62,9 @@ include 'main.php';
 =======
                         <a class="nav-link active" aria-current="page" href="payment2.php"><i class="fa-solid fa-money-bill"></i> Payment</a>
 >>>>>>> main
+=======
+                        <a class="nav-link active" aria-current="page" href="payment_loan.php"><i class="fa-solid fa-money-bill"></i> Payment</a>
+>>>>>>> Emon
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="payment_history.php"><i class="fa-solid fa-history"></i> Payment History</a>
@@ -84,6 +88,7 @@ include 'main.php';
                             <li><a class="dropdown-item" onclick="cpass('<?php echo $_SESSION['email']; ?>', '<?php echo $pass; ?>')"><i class="fa-solid fa-key"></i> Change Password</a></li>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <li><a class="dropdown-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
 =======
                             <li><a class="dropdown-item" href="../login/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
@@ -91,6 +96,9 @@ include 'main.php';
 =======
                             <li><a class="dropdown-item" href="../login/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
 >>>>>>> main
+=======
+                            <li><a class="dropdown-item" href="../login/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+>>>>>>> Emon
                         </ul>
                     </div>
                 </div>
@@ -101,6 +109,7 @@ include 'main.php';
 </div>
 
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -153,6 +162,48 @@ if (mysqli_num_rows($result) > 0) {
 
 
 <div class="container py-5 shuttle-container" style = "margin : 100px">
+=======
+<style>
+    video.fullscreen {
+        position: absolute;
+        z-index: 0;
+        object-fit: cover;
+        width:100%;
+        height:100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        &::-webkit-media-controls {
+            display:none !important;
+        }
+    }
+    .container {
+        position: relative;
+        display: grid;
+        place-items: center;
+    }
+    .content {
+    top: 260px;
+    left: 558px;
+    position: absolute;
+    display: grid;
+    padding: 30px;
+    background-color: white;
+    opacity: 0.7;
+    z-index: 1;
+    }
+
+</style>
+
+
+<div class="">
+<video class="fullscreen" playsinline autoplay="" loop="" muted="" style="
+    width: 100%;">
+<source src="assets/img/loan.mp4" type="video/mp4">
+</video>
+<div class="content">
+>>>>>>> Emon
     <!-- <h2 class="mb-4">Your Loan Request Status:</h2> -->
         
         <?php
@@ -162,16 +213,31 @@ if (mysqli_num_rows($result) > 0) {
 $email1 = $_SESSION['email'];
 
 // Retrieve the loan application status and amount based on student ID
+<<<<<<< HEAD
 $r = "SELECT * FROM loan_application WHERE email = '$email1'";
+=======
+// $r = "SELECT * FROM loan_application WHERE email = '$email1'";
+$r = "SELECT email,`status`, SUM(amount) AS total_amount
+FROM loan_application
+GROUP BY email
+HAVING COUNT(email) > 0 AND `status` = 'approved'And email = '$email1'";
+>>>>>>> Emon
 $result = mysqli_query($sql, $r);
 
 if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
     $status = $row['status'];
+<<<<<<< HEAD
     $amount = $row['amount'];
     
 
     echo '<div class="container py-5 shuttle-container" style="margin: 100px;">';
+=======
+    $amount = $row['total_amount'];
+    
+
+    echo '<div class="container py-5 shuttle-container">';
+>>>>>>> Emon
     echo '<h2 class="mb-4" style="color: orange; font-weight: bold;">your loan request status:</h2>';
 
 
@@ -188,11 +254,17 @@ if (mysqli_num_rows($result) > 0) {
     echo '<p>No loan application found for your student ID.</p>';
 }
 ?>
+<<<<<<< HEAD
 
     </div>
 >>>>>>> Emon
 =======
 >>>>>>> main
+=======
+ </div>
+
+    </div>
+>>>>>>> Emon
 
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/all.min.js"></script>

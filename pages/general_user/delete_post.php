@@ -16,9 +16,27 @@ $result = mysqli_query($sql, $q);
 
 $sql->close();
 if ($result) {
+<<<<<<< HEAD
     header("Location: my_post.php?remove_success=true");
 } else {
     header("Location: my_post.php?remove_success=false");
+=======
+    if($_SESSION['type'] == "admin"){
+        header("Location:../admin/all_post.php?remove_success=true");
+    }
+    else{
+        header("Location: my_post.php?remove_success=true");
+    }
+    
+} else {
+
+    if($_SESSION['type'] == "admin"){
+        header("Location: ../admin/all_post.php?remove_success=false");
+    }
+    else{
+        header("Location: my_post.php?remove_success=false");
+    }
+>>>>>>> Emon
 }
 exit()
 

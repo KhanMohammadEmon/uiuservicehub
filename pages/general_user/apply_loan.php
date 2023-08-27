@@ -2,12 +2,20 @@
 session_start();
 include '../sqlCommands/connectDb.php';
 include 'main.php';
+<<<<<<< HEAD
+=======
+$email = $_SESSION['email'];
+>>>>>>> Emon
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $fullName = $_POST['fullName'];
     $studentId = $_POST['studentId'];
+<<<<<<< HEAD
     $email = $_POST['email'];
+=======
+    // $email = $_POST['email'];
+>>>>>>> Emon
     $phone = $_POST['phone'];
     $amount = $_POST['amount'];
     $userType = $_SESSION['type'];
@@ -101,7 +109,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <a class="nav-link active" aria-current="page" href="apply_loan.php"><i class="fa-solid fa-file"></i> Apply for Loan</a>
                     </li>
                     <li class="nav-item">
+<<<<<<< HEAD
                         <a class="nav-link active" aria-current="page" href="payment.php"><i class="fa-solid fa-money-bill"></i> Payment</a>
+=======
+                        <a class="nav-link active" aria-current="page" href="payment_loan.php"><i class="fa-solid fa-money-bill"></i> Payment</a>
+>>>>>>> Emon
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="payment_history.php"><i class="fa-solid fa-history"></i> Payment History</a>
@@ -147,10 +159,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <label for="studentId" class="form-label">Student ID</label>
                                 <input type="text" class="form-control" id="studentId" name="studentId" required>
                             </div>
+<<<<<<< HEAD
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" required>
                             </div>
+=======
+                            <!-- <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div> -->
+>>>>>>> Emon
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Phone Number</label>
                                 <input type="text" class="form-control" id="phone" name="phone" required>

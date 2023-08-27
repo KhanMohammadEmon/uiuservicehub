@@ -46,10 +46,17 @@ include 'main.php';
                             <a class="nav-link active" aria-current="page" href="mainPage.php"><i class="fa-solid fa-house-user"></i> Home</a>
                         </li>
                         <li class="nav-item">
+<<<<<<< HEAD
                             <a class="nav-link active" aria-current="page" href="my_loans.php"><i class="fa-solid fa-house"></i> Hostel Service</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="my_req_loans.php"><i class="fa-solid fa-bus"></i> Shuttle Service</a>
+=======
+                            <a class="nav-link active" aria-current="page" href="hostel_service.php"><i class="fa-solid fa-hotel"></i> Hostel Service</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="shuttle_service.php"><i class="fa-solid fa-bus"></i> Shuttle Service</a>
+>>>>>>> Emon
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="loan.php"><i class="fa-solid fa-bank"></i> Loan Service</a>
@@ -58,7 +65,11 @@ include 'main.php';
                             <a class="nav-link active" aria-current="page" href="post.php"><i class="fa-solid fa-file"></i> Post </a>
                         </li>
                         <li class="nav-item">
+<<<<<<< HEAD
                             <a class="nav-link active" aria-current="page" href="my_given_loans.php"><i class="fa-solid fa-people-group"></i> Club/Forum</a>
+=======
+                            <a class="nav-link active" aria-current="page" href="club_forum.php"><i class="fa-solid fa-people-group"></i> Club/Forum</a>
+>>>>>>> Emon
                         </li>
                        
                         <li class="nav-item">
@@ -104,6 +115,11 @@ include 'main.php';
  
     </div>
 </div>
+<<<<<<< HEAD
+=======
+
+<?php include 'footer.php'?>
+>>>>>>> Emon
 
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>

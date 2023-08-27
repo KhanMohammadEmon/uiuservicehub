@@ -44,6 +44,12 @@ while ($row = $result1->fetch_assoc()) {
 </head>
 
 <body>
+<<<<<<< HEAD
+=======
+    <?php if($_SESSION['type'] == "general_user"){
+
+        ?>
+>>>>>>> Emon
     <div>
         <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-sm p-3 bg-white">
             <div class="container-fluid">
@@ -65,7 +71,11 @@ while ($row = $result1->fetch_assoc()) {
                                     class="fa-solid fa-house-user"></i> Home</a>
                         </li>
                         <li class="nav-item">
+<<<<<<< HEAD
                             <a class="nav-link active" aria-current="page" href="my_loans.php"><i
+=======
+                            <a class="nav-link active" aria-current="page" href="hostel_service.php"><i
+>>>>>>> Emon
                                     class="fa-solid fa-house"></i> Hostel Service</a>
                         </li>
                         <li class="nav-item">
@@ -117,7 +127,12 @@ while ($row = $result1->fetch_assoc()) {
             </div>
         </nav>
     </div>
+<<<<<<< HEAD
 
+=======
+    <?php
+}?>
+>>>>>>> Emon
 
     <div class="main-body">
 

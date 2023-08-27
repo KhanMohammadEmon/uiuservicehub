@@ -25,6 +25,13 @@ include 'main.php';
             margin-bottom: 100px !important;
         }
     </style>
+<<<<<<< HEAD
+=======
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" charset="utf-8"></script>
+
+>>>>>>> Emon
 </head>
 
 <body>
@@ -40,6 +47,7 @@ include 'main.php';
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+<<<<<<< HEAD
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
@@ -80,6 +88,57 @@ include 'main.php';
                     </ul>
 
                 </div>
+=======
+                <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-sm p-3 bg-white">
+        <div class="container-fluid">
+
+            <a class="navbar-brand logo" href="#">
+                <img src="img/logo.png" alt="" width="100">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="mainPage.php"><i class="fa-solid fa-house-user"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="apply_loan.php"><i class="fa-solid fa-file"></i> Apply for Loan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="payment_loan.php"><i class="fa-solid fa-money-bill"></i> Payment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="payment_history.php"><i class="fa-solid fa-history"></i> Payment History</a>
+                    </li>
+                </ul>
+
+                <!-- This div contains the elements that will be positioned at the top-right -->
+                <div class="top-right-elements">
+                    <div class="dropdown me-3">
+                        <?php if ($gender == "Female") {?>
+                            <img class="dropdown-toggle pro" src="../../img/Female.png" alt="img" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <?php } ?>
+                        <?php if ($gender == "Male") { ?>
+                            <img class="dropdown-toggle pro" src="../../img/man.png" alt="img" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <?php } ?>
+                        <?php if ($gender != "Male" && $gender != "Female") { ?>
+                            <img class="dropdown-toggle pro" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($image); ?>" alt="img" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <?php } ?>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="profile.php"><i class="fa-solid fa-user"></i> My Profile</a></li>
+                            <li><a class="dropdown-item" onclick="cpass('<?php echo $_SESSION['email']; ?>', '<?php echo $pass; ?>')"><i class="fa-solid fa-key"></i> Change Password</a></li>
+                            <li><a class="dropdown-item" href="../login/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End of top-right elements -->
+            </div>
+        </div>
+    </nav>
+>>>>>>> Emon
             </div>
         </nav>
     </div>
@@ -103,8 +162,13 @@ include 'main.php';
     </div>
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+<<<<<<< HEAD
     <script src="assets/js/all.min.js"></script>
     <script src="assets/js/app.js"></script>
+=======
+<script src="assets/js/all.min.js"></script>
+<script src="assets/js/custom.js"></script>
+>>>>>>> Emon
 </body>
 
 </html>

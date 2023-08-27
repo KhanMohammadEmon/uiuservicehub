@@ -38,9 +38,34 @@ if (isset($_POST['submit'])) {
         $result = mysqli_query($sql, $r);
         if ($result) {
             move_uploaded_file($img_tmp_name, "../uploads/" . $img_name);
+<<<<<<< HEAD
             $msg = "<div class='alert alert-success'>Post updated successful. <a href='post.php' class = 'btn'> Home</a></div>";
         } else {
             $msg = "<div class='alert alert-danger'>Something wrong went. Please try again later.</div>";
+=======
+            if ($_SESSION["type"] == "general_user") {
+                $msg = "<div class='alert alert-success'>Post updated successful. <a href='post.php' class = 'btn'> Home</a></div>";
+            } else if($_SESSION['type'] == 'admin') {
+                $msg = "<div class='alert alert-success'>Post updated successful. <a href='../admin/all_post.php' class = 'btn'> Home</a></div>";
+                
+            }
+            else 
+            {
+                $msg = "<div class='alert alert-success'>Post updated successful. <a href='../forumRep/post.php' class = 'btn'> Home</a></div>"; 
+            }
+        } else {
+            if($_SESSION["type"] == "admin")
+            {
+                $msg = "<div class='alert alert-danger'>Something wrong went. Please try again later. <a href='../admin/all_post.php' class = 'btn'> Home</a></div>";
+            }
+            else if($_SESSION["type"] == "forumRep")
+            {
+                $msg = "<div class='alert alert-danger'>Something wrong went. Please try again later. <a href='../forumRep/post.php' class = 'btn'> Home</a></div>";
+            }
+            else{
+                $msg = "<div class='alert alert-danger'>Something wrong went. Please try again later. <a href='post.php' class = 'btn'> Home</a></div>";
+            }
+>>>>>>> Emon
         }
     }
 }
@@ -153,7 +178,23 @@ if (isset($_POST['submit'])) {
                     } ?>
                     <button type="submit" name="submit" class="btn btn-success" style="margin:10px 0px 10px 0px">Update
                         Post</button>
+<<<<<<< HEAD
                     <a href='my_post.php' class='btn btn-danger'> Cancel</a>
+=======
+
+                        <?php if($_SESSION['type']=='general_user'){?>
+                    <a href='my_post.php' class='btn btn-danger'> Cancel</a>
+                    <?php }
+                    else 
+                    {
+                        ?>
+                           <a href='../<?php echo $_SESSION['type'] ?>/mainPage.php' class='btn btn-danger'> Cancel</a>
+                        <?php
+                    }
+                    ?>
+                     
+
+>>>>>>> Emon
                 </form>
             </div>
         </div>
