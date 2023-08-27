@@ -88,14 +88,14 @@ include '../general_user/main.php';
                     </a>
                 </li>
 
-                <!-- <li>
-                    <a href="#">
+                <li>
+                    <a href="loan.php">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
-                        <span class="title">Settings</span>
+                        <span class="title">Loan Control</span>
                     </a>
-                </li> -->
+                </li>
 
                 <li>
                     <a href="add_shuttle.php">

@@ -142,17 +142,17 @@ include '../general_user/main.php';
 
             <!-- ================ Loan Request Details List ================= -->
             <div class="details">
-                <div class="recentOrders">
+                <!-- <div class="recentOrders">
                     <div class="cardHeader">
                         <h2>Recent Request For Loan</h2>
-                        <!-- <a href="#" class="btn">View All</a> -->
+                        
                     </div>
 
                     <?php 
-                      include 'request_loan.php';
+                     // include 'request_loan.php';
                      ?>
 
-                </div>
+                </div> -->
             </div>
 
 
