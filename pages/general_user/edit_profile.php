@@ -43,6 +43,7 @@ while ($row = $result1->fetch_assoc()) {
 
 <body>
 <div>
+  <?php if($_SESSION['type']=='general_user') {?>
     <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-sm p-3 bg-white">
             <div class="container-fluid">
 
@@ -98,6 +99,7 @@ while ($row = $result1->fetch_assoc()) {
                 </div>
             </div>
     </nav>
+    <?php }?>
 </div>
 
 <div class="container-fluid main-body">
@@ -119,6 +121,10 @@ while ($row = $result1->fetch_assoc()) {
             <label class="mb-2 mt-2">Last Name</label>
             <input type="text" class="form-control form-control" name="last_name" value="<?php echo "$last_name" ?>" placeholder="" required>
           </div>
+
+          <?php
+          if($_SESSION['type']=='general_user'){
+          ?>
           <div class="form-group w-100">
             <label class="mb-2 mt-2">Gender</label>
             <select class="form-control form-control" id="exampleFormControlSelect1" name="gender" required>
@@ -143,6 +149,7 @@ while ($row = $result1->fetch_assoc()) {
 
             </select>
           </div>
+          <?php } ?>
 
           <div class="form-group w-100">
             <label class="mb-2 mt-2">Phone Number</label>
@@ -152,7 +159,13 @@ while ($row = $result1->fetch_assoc()) {
           <div class="btn1 w-100">
             <button type="submit" class="btn custom-btn">Save</button>
           </div>
-
+          <?php
+          if($_SESSION['type']!='general_user'){
+          ?>
+          <div class="btn1 w-100" style = "margin:0px, 10px, 0px, 0px;">
+            <a href="../forumRep/mainPage.php" class="btn custom-btn">Cancel</a>
+          </div>
+          <?php }?>
 
         </form>
 

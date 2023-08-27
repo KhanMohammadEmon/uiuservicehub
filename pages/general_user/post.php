@@ -104,7 +104,7 @@ include 'main.php';
                             <?php
                             while ($post_row = mysqli_fetch_assoc($result)) {
                             ?>
-                                <div class="left-side col-md-4">
+                                <div class="left-side col-md-2">
                                     <div class="card p-1" style="min-width: 400px !important; <?php if (file_exists("../uploads/" . $post_row['img'])) {
                                                                                 echo "background-image: url('../uploads/{$post_row['img']}'); background-size: cover; opacity: 0.7;";
                                                                                 } else {

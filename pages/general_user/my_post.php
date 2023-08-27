@@ -29,6 +29,10 @@ include "showUser.php";
 </head>
 
 <body>
+    <?php
+if($_SESSION['type']=='general_user')
+   {
+    ?>
 
 <div>
     <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-sm p-3 bg-white">
@@ -82,6 +86,7 @@ include "showUser.php";
             </div>
     </nav>
 </div>
+<?php }?>
 
 <div class=" container-fluid main-body">
         <div class="row mbody">
@@ -89,6 +94,15 @@ include "showUser.php";
                 <div class="shadow-sm p-3 mb-5 bg-white rounded">
                         <div class="card-header py-3">
                             <h4 class="m-0 font-weight-bold fw-bold text-dark">Posts</h4>
+                        </div>
+                        <div>
+                        <?php
+                             if($_SESSION['type']!='general_user'){
+                              ?>
+                            <div style=" margin:6px 0px;">
+                                <a href="../forumRep/mainPage.php" class="btn btn-info"  style = "color:white;"> <- </a>
+                            </div>
+                            <?php }?>
                         </div>
 
 
@@ -153,6 +167,7 @@ include "showUser.php";
                                 </table>
                             </div>
                         </div>
+                        
                     </div>
                     
                  

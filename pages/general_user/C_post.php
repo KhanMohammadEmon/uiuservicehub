@@ -37,7 +37,10 @@ if (isset($_POST['submit'])) {
             $_POST['description'] = "";
             $_POST['category'] = "";
 
+            if($_SESSION['type']=='general_user')
             header("Location: post.php");
+            else 
+            header("Location:../forumRep/post.php");
         } else {
             $msg = "<div class='alert alert-danger'>Something wrong went. Please try again later.</div>";
         }

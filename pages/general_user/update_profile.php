@@ -14,7 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
             $r = "UPDATE {$_SESSION['type']} SET `first_name`='$first_name',`last_name`='$last_name',`phone_number`='$phone',`gender`='$gender' WHERE `email` = '$email';";
             $result = mysqli_query($sql, $r);
+            if($_SESSION['type']=='general_user')
             header("Location:profile.php");
+            else
+            header("Location:../forumRep/mainPage.php");
             exit();
         
         }
